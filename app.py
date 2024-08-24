@@ -8,7 +8,7 @@ bar_plot = px.bar(customer_data, x = 'preferred_category', y = 'number of purcha
                               title = "Purchase Frequencies based on Product Category and Gender")
 
 # box plot for income distribution and gender
-
+ 
 box_plot = px.box(customer_data, x = 'gender', y = 'income', 
                   title = 'Distribution of Income Based on Gender',
                   category_orders={'gender': ['Male', 'Female', 'Other']})
