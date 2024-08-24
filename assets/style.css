@@ -1,23 +1,18 @@
 .header {
     display:flex; 
     justify-content: center;
-    background-color: #554d55;
+    background-color: #3f3b3f;
     align-items: center;
     flex-direction: column;
     padding: 15px;
     border-radius: 15px;
 }
 
-
 .header-title {
     color: #CFCFCF;
     width:750px;
     text-align: center;
     font-family: 'Poppins', sans-serif;
- 
-
-    
-    
 }
 
 .description {
@@ -31,13 +26,13 @@
     box-shadow: 0px 10px 12px 1px rgba(0,0,0,0.35);
     border-radius: 15px; 
     margin-bottom: 30px; 
-    font-family: 'Poppins', sans-serif;
 }
+
 
 .box-plot {
     background-color: white; 
     border-radius: 15px; 
     margin-bottom: 20px; 
-    font-family: 'Poppins', sans-serif;
     box-shadow: 0px 10px 12px 1px rgba(0,0,0,0.35);
 }
+
