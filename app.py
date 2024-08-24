@@ -1,5 +1,5 @@
 from cleaning import *
-from dash import Dash, dcc, html
+from dash import Dash, dcc, html, Input, Output
 import plotly.express as px 
 
 # bar chart for product categories and purchase frequency
@@ -10,7 +10,8 @@ bar_plot = px.bar(customer_data, x = 'preferred_category', y = 'number of purcha
 # box plot for income distribution and gender
 
 box_plot = px.box(customer_data, x = 'gender', y = 'income', 
-                  title = 'Distribution of Income Based on Gender',)
+                  title = 'Distribution of Income Based on Gender',
+                  category_orders={'gender': ['Male', 'Female', 'Other']})
 
 
 external_stylesheets = [
@@ -38,9 +39,27 @@ app.layout = html.Div(
             className = 'header'
         ),
         dcc.Graph(figure = bar_plot, config={"displayModeBar": False}, className = 'bar-plot',),
-        dcc.Graph(figure = box_plot, config={"displayModeBar": False}, className = 'box-plot',),
+        html.Div(
+            children = [html.P(children = 'Move the slider to modify the minimum or maximum value of the boxplot below:', className = 'slider-description')]
+        ),
+        dcc.RangeSlider(id = 'income-slider', min=customer_data['income'].min(), max = customer_data['income'].max(),
+                        value=[customer_data['income'].min(), customer_data['income'].max()], className = 'income-slider'),
+        dcc.Graph(id = 'box-plot', figure = box_plot, config={"displayModeBar": False}, className = 'box-plot',),
+       
     ]
 )
+
+# define callbacks to implement interactivity 
+@app.callback(
+    Output('box-plot', 'figure'),
+    Input('income-slider', 'value')
+)
+def update_box_plot(inc_value):
+    new_data = customer_data.query('income >= @inc_value[0] and income <= @inc_value[1]')
+    updated_box_plot = px.box(new_data, x='gender', y='income', 
+                             title='Distribution of Income Based on Gender',
+                             category_orders={'gender': ['Male', 'Female', 'Other']})
+    return updated_box_plot
 
 if __name__ == "__main__":
     app.run_server(debug=True, port = 8051)
