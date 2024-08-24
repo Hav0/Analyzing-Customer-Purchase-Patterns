@@ -9,8 +9,9 @@ bar_plot = px.bar(customer_data, x = 'preferred_category', y = 'number of purcha
 
 # box plot for income distribution and gender
 
-box_plot = px.box(customer_data, x = 'gender', y = 'income(thousands of dollars)', 
-                  title = 'Distribution of Income Based on Gender')
+box_plot = px.box(customer_data, x = 'gender', y = 'income', 
+                  title = 'Distribution of Income Based on Gender',)
+
 
 external_stylesheets = [
     {
@@ -23,7 +24,7 @@ external_stylesheets = [
 ]
 
 app = Dash(__name__, external_stylesheets=external_stylesheets)
-app.title = 'Customer Segmentation Analytics: How Can We Learn More About Customer Purchase Data?'
+app.title = 'Understanding Customer Purchase Patterns'
 
 # Create the app layout
 app.layout = html.Div(
@@ -36,8 +37,8 @@ app.layout = html.Div(
             ],
             className = 'header'
         ),
-        dcc.Graph(figure = bar_plot, config={"displayModeBar": False}, className = 'bar-plot'),
-        dcc.Graph(figure = box_plot, config={"displayModeBar": False}, className = 'box-plot'),
+        dcc.Graph(figure = bar_plot, config={"displayModeBar": False}, className = 'bar-plot',),
+        dcc.Graph(figure = box_plot, config={"displayModeBar": False}, className = 'box-plot',),
     ]
 )
 
