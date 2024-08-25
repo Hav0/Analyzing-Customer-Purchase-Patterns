@@ -1,4 +1,4 @@
-# Customer-Segmentation-Analytics-
+# Customer Purchase Patterns Based on Demographics
 
 Implementing a data visualization interface in Python using Plotly Dash. 
 
