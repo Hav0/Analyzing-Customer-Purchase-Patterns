@@ -40,7 +40,7 @@ app.layout = html.Div(
         ),
         dcc.Graph(figure = bar_plot, config={"displayModeBar": False}, className = 'bar-plot',),
         html.Div(
-            children = [html.P(children = 'Move the slider to modify the minimum or maximum value of the boxplot below:', className = 'slider-description')]
+            children = [html.P(children = 'Use the slider to adjust the minimum and maximum values of income displayed in the box plot below:', className = 'slider-description')]
         ),
         dcc.RangeSlider(id = 'income-slider', min=customer_data['income'].min(), max = customer_data['income'].max(),
                         value=[customer_data['income'].min(), customer_data['income'].max()], className = 'income-slider'),
